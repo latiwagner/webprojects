@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/
+    all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/
+    gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        li{
+            padding:10px 10px;
+        }
+    </style>
+</head>
+<body>
+<section class="section" id="app">
+    
+    <form @submit.prevent="addTodo">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" v-model="newTodo" required placeholder="new todo">
+        </div>
+        <div class="control">
+          <button class="button is-primary">Add Item</button>
+        </div>
+      </div>
+    </form>
+    <div class="field">
+      <ul>
+        <li v-for="todo in todoList" :key="todo.num">
+          {{ todo.text }}
+          <button class="button is-danger is-small is-outlined" @click="removeTodo(todo)">
+            X
+          </button>
+        </li>
+      </ul>
+    </div>
+</section>    
+
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp, ref } = Vue
+
+  createApp({
+    setup() {
+
+      let num = 0
+
+    const newTodo = ref('')
+    const todoList = ref([
+      { num: num++, text: 'item 1' },
+      { num: num++, text: 'item 2' },
+    ])
+
+    function addTodo() {
+      todoList.value.push({ num: num++, text: newTodo.value })
+      newTodo.value = ''
+    }
+
+    function removeTodo(num) {
+      todoList.value.splice(num, 1)
+    }
+
+    return {
+      newTodo,
+      todoList,
+      addTodo,
+      removeTodo
+    }
+  }
+  }).mount('#app')
+</script>
+</body>
+</html>
