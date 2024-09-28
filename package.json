@@ -1,0 +1,17 @@
+{
+  "name": "webprojects",
+  "version": "1.0.0",
+  "description": "This is a project to create a mobile-first fitness tracker web app. It will be used to track the exercise habits of you and your friends.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "nodemon server/index.mjs" 
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
