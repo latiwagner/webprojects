@@ -9,7 +9,7 @@ const isOpen = ref(false)
 <nav class="navbar is-info" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="30" height="30" />
+      <img alt="FitTrack logo" class="logo" src="@/assets/fitlogo.svg" width="54" height="38" />
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" 
       :class="{ 'is-active': isOpen }" @click="isOpen = !isOpen">
@@ -24,6 +24,8 @@ const isOpen = ref(false)
     <div class="navbar-start">
         <RouterLink to="/" class="navbar-item">Home</RouterLink>
         <RouterLink to="/about" class="navbar-item">About</RouterLink>
+        <RouterLink to="/tracker" class="navbar-item">Tracker</RouterLink>
+        <RouterLink to="/activity" class="navbar-item">Activity</RouterLink>
 
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -72,5 +74,8 @@ const isOpen = ref(false)
   .router-link-active {
     font-weight: bold;
     border-bottom: 2px solid blue;
+  }
+  .logo{
+    margin-right: 15px;
   }
 </style>

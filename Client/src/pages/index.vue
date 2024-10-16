@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <h1>Home</h1>
-    <p>vue.js app.</p>
+    <h1 class="title">Home</h1>
+    <p>This is an app that you can use to track the exercise habits of you and your friends.</p>
   </main>
 </template>
