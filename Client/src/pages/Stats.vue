@@ -3,6 +3,6 @@
 <template>
   <main>
     <h1 class="title">Your Stats</h1>
-    <p>This page will allow you to see your exercise history.</p>
+    <p>This page will allow you to see your own exercise history.</p>
   </main>
 </template>

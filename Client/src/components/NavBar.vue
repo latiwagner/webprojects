@@ -9,7 +9,7 @@ const isOpen = ref(false)
 <nav class="navbar is-info" role="navigation" aria-label="main navigation">
   <div class="container">
     <div class="navbar-brand">
-      <img alt="FitTrack logo" class="logo" src="@/assets/fitlogo.svg" width="54" height="38" />
+      <RouterLink to="/" class="navbar-item"><img alt="FitTrack logo" class="logo" src="@/assets/fitlogo.svg" width="54" height="38" /></RouterLink>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" 
       :class="{ 'is-active': isOpen }" @click="isOpen = !isOpen">
@@ -22,31 +22,20 @@ const isOpen = ref(false)
 
   <div class="navbar-menu" :class="{ 'is-active': isOpen }">
     <div class="navbar-start">
-        <RouterLink to="/" class="navbar-item">Home</RouterLink>
         <RouterLink to="/stats" class="navbar-item">Your Stats</RouterLink>
-        <RouterLink to="/tracker" class="navbar-item">Tracker</RouterLink>
+        <RouterLink to="/tracker" class="navbar-item">Your Tracker</RouterLink>
         <RouterLink to="/activity" class="navbar-item">Activity</RouterLink>
 
 
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          More
+          Admin
         </a>
 
         <div class="navbar-dropdown">
-          <RouterLink to="/about" class="navbar-item">
-            About
+          <RouterLink to="/usercontrol" class="navbar-item">
+            Users
           </RouterLink>
-          <RouterLink to="/jobs" class="navbar-item">
-            Jobs
-          </RouterLink>
-          <RouterLink to="/contact" class="navbar-item">
-            Contact
-          </RouterLink>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
         </div>
       </div>
     </div>
@@ -73,9 +62,8 @@ const isOpen = ref(false)
 <style scoped>
   .router-link-active {
     font-weight: bold;
-    border-bottom: 2px solid blue;
   }
-  .logo{
+  /*.logo{
     margin-right: 15px;
-  }
+  }*/
 </style>
