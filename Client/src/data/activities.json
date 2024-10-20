@@ -1,0 +1,36 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "user": "caseyreardon",
+        "title": "walked",
+        "distance": 3.25,
+        "duration": 30
+      },
+      {
+        "id": 2,
+        "user": "michaelw",
+        "title": "ran one mile",
+        "distance": 1,
+        "duration": 15
+      },
+      {
+        "id": 3,
+        "user": "sophiab",
+        "title": "biked",
+        "distance": 5,
+        "duration": 9
+      },
+      {
+        "id": 3,
+        "user": "sophiab",
+        "title": "biked again",
+        "distance": 5,
+        "duration": 8
+      }
+    ],
+    "total": 208,
+    "skip": 0,
+    "limit": 30
+  }
+  
