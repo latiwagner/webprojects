@@ -33,7 +33,7 @@ const isOpen = ref(false)
         </a>
 
         <div class="navbar-dropdown">
-          <RouterLink to="/usercontrol" class="navbar-item">
+          <RouterLink to="/admin/usercontrol" class="navbar-item">
             Users
           </RouterLink>
         </div>
@@ -43,7 +43,7 @@ const isOpen = ref(false)
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
+          <a class="button is-info is-inverted">
             <strong>Sign up</strong>
           </a>
           <a class="button is-light">
@@ -60,7 +60,7 @@ const isOpen = ref(false)
 
 
 <style scoped>
-  .router-link-active {
+  .navbar-item {
     font-weight: bold;
   }
   /*.logo{

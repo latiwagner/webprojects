@@ -4,6 +4,7 @@
         "id": 1,
         "user": "caseyreardon",
         "title": "walked",
+        "date": "2024-10-19T11:56:21Z",
         "distance": 3.25,
         "duration": 30
       },
@@ -11,20 +12,23 @@
         "id": 2,
         "user": "michaelw",
         "title": "ran one mile",
+        "date": "2024-10-18T17:56:21Z",
         "distance": 1,
         "duration": 15
       },
       {
         "id": 3,
         "user": "sophiab",
-        "title": "biked",
+        "title": "biked again",
+        "date": "2024-10-18T15:00:00Z",
         "distance": 5,
         "duration": 9
       },
       {
-        "id": 3,
+        "id": 4,
         "user": "sophiab",
-        "title": "biked again",
+        "title": "biked",
+        "date": "2024-10-17T15:00:00Z",
         "distance": 5,
         "duration": 8
       }
