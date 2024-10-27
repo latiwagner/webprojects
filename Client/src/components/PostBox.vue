@@ -61,6 +61,6 @@ h4{
     /*display: inline;*/
 }
 .box{
-    margin: 0 10rem;
+    margin: 0 12rem;
 }
 </style>

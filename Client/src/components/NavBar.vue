@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
+import { getAll, type User } from '@/models/users' 
+
+const users = ref<User[]>([])
+users.value = getAll().data
 
 const isOpen = ref(false)
 </script>
@@ -41,11 +45,16 @@ const isOpen = ref(false)
     </div>
 
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-light">
+      <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link button" id="login">
             Log in
           </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" v-for="user in users" :key="user.id" :user="user">
+            {{ user.username }}
+          </a>
+        </div>
+        <div class="buttons">
           <a class="button is-info is-inverted">
             <strong>Sign up</strong>
           </a>
@@ -62,6 +71,10 @@ const isOpen = ref(false)
 <style scoped>
   .navbar-item {
     font-weight: bold;
+  }
+  #login {
+    background-color: white;
+    margin: 0.4rem 0
   }
   /*.logo{
     margin-right: 15px;
