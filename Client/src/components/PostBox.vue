@@ -52,10 +52,13 @@ const { activity } = props
 
 <style scoped>
 .stats{
-    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    width: 15rem;
+    justify-content: space-evenly;
 }
 h4{
-    display: inline;
+    /*display: inline;*/
 }
 .box{
     margin: 0 10rem;

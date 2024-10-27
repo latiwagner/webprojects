@@ -43,11 +43,11 @@ const isOpen = ref(false)
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-info is-inverted">
-            <strong>Sign up</strong>
-          </a>
           <a class="button is-light">
             Log in
+          </a>
+          <a class="button is-info is-inverted">
+            <strong>Sign up</strong>
           </a>
         </div>
       </div>

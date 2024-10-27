@@ -9,7 +9,9 @@ activities.value = getAll().data
 
 <template>
   <main>
-    <h1 class="title">Friend Activity</h1>
+    <header class="block">
+      <h1 class="title">Friend Activity</h1>
+    </header>
     <div class="block" v-for="activity in activities" :key="activity.id">
       <PostBox :activity="activity"/>
     </div>
