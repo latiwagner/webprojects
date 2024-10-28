@@ -14,3 +14,7 @@ export function logInAs(user: User) {
   currentUser.value.pop()
   currentUser.value.push({ user })
 }
+
+export function logOut() {
+  currentUser.value.pop()
+}

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
 import { getAll, type User } from '@/models/users' 
-import { refUser, logInAs } from '@/models/currentUser';
+import { refUser, logInAs, logOut } from '@/models/currentUser';
 
 const users = ref<User[]>([])
 users.value = getAll().data
@@ -66,7 +66,7 @@ const isOpen = ref(false)
             <a class="button is-info is-inverted" v-if="activeUser.length === 0">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-info is-inverted" v-else>
+            <a class="button is-info is-inverted" v-else @click="logOut()">
               <strong>Sign out</strong>
             </a>
           </div>
