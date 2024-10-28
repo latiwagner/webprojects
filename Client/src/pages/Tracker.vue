@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import ModalOverlay from '@/components/ModalOverlay.vue'
 import { getAll, type Activity } from '@/models/activities'
-import { refUser } from '@/models/currentUser';
+import { refUser } from '@/models/currentUser'
 import PostBox from '@/components/PostBox.vue';
 
 const activities = ref<Activity[]>([])
@@ -24,6 +24,18 @@ const activeUser = refUser()
           <button class="delete" aria-label="close" @click="isModalOpen = false"></button>
         </header>
         <section class="modal-card-body">
+          <div class="block">
+            <b>Activity Description</b>
+            <textarea class="textarea" placeholder="Skated through town"></textarea>
+          </div>
+          <div class="block">
+            <b>Distance</b>
+            <input class="input" type="number" placeholder="Enter a number" />
+          </div>
+          <div class="block">
+            <b>Duration</b>
+            <input class="input" type="number" placeholder="Enter a number" />  
+          </div>
         </section>
         <footer class="modal-card-foot">
           <div class="buttons">
