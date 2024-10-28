@@ -2,10 +2,12 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router'
 import { getAll, type User } from '@/models/users' 
+import { refUser, logInAs } from '@/models/currentUser';
 
 const users = ref<User[]>([])
 users.value = getAll().data
 
+const activeUser = refUser()
 const isOpen = ref(false)
 </script>
 
@@ -47,17 +49,27 @@ const isOpen = ref(false)
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link button" id="login">
-            Log in
+            <span v-if="activeUser.length === 0">Log in</span>
+            <div v-else>
+              <span v-for="logged in activeUser" :key="logged.user.id">
+                {{ logged.user.username }}
+              </span>
+            </div>
           </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item" v-for="user in users" :key="user.id" :user="user">
-            {{ user.username }}
+          <a class="navbar-item" v-for="user in users" :key="user.id" :user="user" @click="logInAs(user)">
+            <div>{{ user.username }}</div>
           </a>
         </div>
         <div class="buttons">
-          <a class="button is-info is-inverted">
-            <strong>Sign up</strong>
-          </a>
+          <div>
+            <a class="button is-info is-inverted" v-if="activeUser.length === 0">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-info is-inverted" v-else>
+              <strong>Sign out</strong>
+            </a>
+          </div>
         </div>
       </div>
     </div>
