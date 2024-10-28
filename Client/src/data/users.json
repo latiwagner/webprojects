@@ -6,7 +6,7 @@
         "username": "caseyreardon",
         "password": "caseyreardonpass",
         "image": "",
-        "totalDistance": 3.25,
+        "totalDistance": 2.25,
         "totalDuration": 30,
         "admin": true
       },
@@ -17,7 +17,7 @@
         "password": "emichaelwpass",
         "image": "https://dummyjson.com/icon/michaelw/128",
         "totalDistance": 1,
-        "totalDuration": 15,
+        "totalDuration": 10,
         "admin": false
       },
       {
