@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ModalOverlay from '@/components/ModalOverlay.vue'
-import { getAll, type Activity } from '@/models/activities'
+import { getAll, removeActivity, type Activity } from '@/models/activities'
 import { refUser } from '@/models/currentUser'
 import PostBox from '@/components/PostBox.vue';
 
@@ -49,7 +49,11 @@ const activeUser = refUser()
     <div class="block">
       <div v-for="logged in activeUser" :key="logged.user.id">
         <div class="block" v-for="activity in activities" :key="activity.id">
-          <PostBox :activity="activity" v-if="logged.user.username === activity.posterName"/>
+          <div v-if="logged.user.username === activity.posterName">
+            <PostBox :activity="activity">
+              <button class="button is-danger is-small" @click="removeActivity(activity)">X</button>
+            </PostBox>
+          </div>
         </div>
       </div>
     </div>

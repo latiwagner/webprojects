@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getAll, type User } from '@/models/users' 
+import { getAll, removeUser, type User } from '@/models/users' 
 import { refUser } from '@/models/currentUser';
 
 const users = ref<User[]>([])
@@ -24,6 +24,7 @@ const activeUser = refUser()
               <th>Username</th>
               <th>Email</th>
               <th>Admin?</th>
+              <th>Control</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,12 @@ const activeUser = refUser()
               <td>{{ user.username }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.admin }}</td>
+              <td>
+                <div class="buttons">
+                  <button class="button is-small">Edit</button>
+                  <button class="button is-danger is-small" @click="removeUser(user)">X</button>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

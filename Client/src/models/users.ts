@@ -18,3 +18,10 @@ export interface User {
   totalDuration: number
   admin: boolean
 }
+
+export function removeUser(user: User) {
+  const index = getAll().data.findIndex((i) => i.id === user.id)
+  if (index != -1) {
+    getAll().data.splice(index, 1)
+  }
+}

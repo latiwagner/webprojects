@@ -44,6 +44,9 @@ const { activity } = props
                 </span>
             </a>
             </div>
+            <div class="level-right">
+                <slot/>
+            </div>
         </nav>
         </div>
     </article>
@@ -57,9 +60,9 @@ const { activity } = props
     width: 15rem;
     justify-content: space-evenly;
 }
-h4{
-    /*display: inline;*/
-}
+/*h4{
+    display: inline;
+}*/
 .box{
     margin: 0 12rem;
 }
