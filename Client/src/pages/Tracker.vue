@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ModalOverlay from '@/components/ModalOverlay.vue';
+import ModalOverlay from '@/components/ModalOverlay.vue'
+import { getAll, type Activity } from '@/models/activities'
+import { refUser } from '@/models/currentUser';
+import PostBox from '@/components/PostBox.vue';
 
+const activities = ref<Activity[]>([])
+activities.value = getAll().data
 const isModalOpen = ref(false)
+const activeUser = refUser()
 </script>
 
 <template>
@@ -27,6 +33,15 @@ const isModalOpen = ref(false)
         </footer>
       </ModalOverlay>
     </div>
+
+    <div class="block">
+      <div v-for="logged in activeUser" :key="logged.user.id">
+        <div class="block" v-for="activity in activities" :key="activity.id">
+          <PostBox :activity="activity" v-if="logged.user.username === activity.posterName"/>
+        </div>
+      </div>
+    </div>
+    
   </main>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getAll, type User } from '@/models/users' 
-import { refUser, logInAs } from '@/models/currentUser';
+import { refUser } from '@/models/currentUser';
 
 const users = ref<User[]>([])
 users.value = getAll().data
