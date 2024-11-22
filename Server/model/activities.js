@@ -2,6 +2,12 @@
 const data = require("../data/activities.json")
 
 /**
+ * @template T
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataEnvelope} DataEnvelope
+ * @typedef {import("../../Client/src/models/dataEnvelope").DataListEnvelope} DataListEnvelope
+ */
+
+/**
  * @typedef {import("../../Client/src/models/activities").Activity} Activity
  */
 

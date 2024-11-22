@@ -5,7 +5,8 @@ import type { DataListEnvelope } from './dataEnvelope.ts'
 export function getAll(): DataListEnvelope<Activity> {
   return {
     data: data.items,
-    total: data.total
+    total: data.total,
+    isSuccess: true
   }
 }
 
