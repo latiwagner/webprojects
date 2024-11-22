@@ -16,8 +16,12 @@ app.get("/", (req, res) => {
 .get("/about", (req, res) => {
   res.send("About Us")
 })
-.use("/users", userController)
-.use("/activities", activityController)
+.use("/api/v1/users", userController)
+.use("/ap1/v1/activities", activityController)
+
+.get("*", (req, res) => {
+  res.sendFile(__dirname + "/dist/index.html")
+})
 
 app.listen(PORT, () => {
     console.log("Server is running at http://localhost:" + PORT)

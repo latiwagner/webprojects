@@ -51,7 +51,7 @@ function update(id, activity) {
  * @returns {{ success: boolean, message: string, id: number }}
  */
 function remove(id) {
-    const itemIndex = data.items.findIndex((user) => user.id == id)
+    const itemIndex = data.items.findIndex((activity) => activity.id == id)
     data.items.splice(itemIndex, 1)
     return { success: true, message: "Item deleted", id: id }
 }
