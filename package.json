@@ -4,8 +4,8 @@
   "description": "This is a project to create a mobile-first fitness tracker web app. It will be used to track the exercise habits of you and your friends.",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.mjs",
-    "dev": "nodemon server/index.mjs" 
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js --watch server" 
   },
   "dependencies": {
     "express": "^4.21.0",

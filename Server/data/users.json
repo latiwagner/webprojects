@@ -1,0 +1,38 @@
+{
+    "items": [
+      {
+        "id": 1,
+        "email": "reardonc3@newpaltz.edu",
+        "username": "caseyreardon",
+        "password": "caseyreardonpass",
+        "image": "",
+        "totalDistance": 2.25,
+        "totalDuration": 30,
+        "admin": true
+      },
+      {
+        "id": 2,
+        "email": "michael.williams@x.dummyjson.com",
+        "username": "michaelw",
+        "password": "emichaelwpass",
+        "image": "https://dummyjson.com/icon/michaelw/128",
+        "totalDistance": 1,
+        "totalDuration": 10,
+        "admin": false
+      },
+      {
+        "id": 3,
+        "email": "sophia.brown@x.dummyjson.com",
+        "username": "sophiab",
+        "password": "sophiabpass",
+        "image": "https://dummyjson.com/icon/sophiab/128",
+        "totalDistance": 10,
+        "totalDuration": 17,
+        "admin": false
+      }
+    ],
+    "total": 208,
+    "skip": 0,
+    "limit": 30
+  }
+  
