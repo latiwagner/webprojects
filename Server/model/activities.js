@@ -13,55 +13,69 @@ const data = require("../data/activities.json")
 
 /**
  * Get all activities
- * @returns {Promise<Activity[]>}
+ * @returns {Promise<DataListEnvelope<Activity>>}
  */
 async function getAll() {
-    return data.items
+    return {
+        isSuccess: true,
+        data: data.items,
+        total: data.items.length,
+    }
 }
 
 /**
  * Get an activity by id
  * @param {number} id
- * @returns {Promise<Activity>}
+ * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function get(id) {
-    return data.items.find((activity) => activity.id == id)
+    const item = data.items.find((activity) => activity.id == id)
+    return {
+        isSuccess: !!item,
+        data: item,
+    }
 }
 
 /**
  * Add a new activity
  * @param {Activity} activity
- * @returns {Promise<Activity>}
+ * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function add(activity) {
     activity.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
     data.items.push(activity)
-    return activity
+    return {
+        isSuccess: true,
+        data: activity,
+    }
 }
 
 /**
  * Update an activity
  * @param {number} id
  * @param {Activity} activity
- * @returns {Promise<Activity>}
+ * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function update(id, activity) {
     const activityToUpdate = get(id)
     Object.assign(activityToUpdate, activity)
-    return activityToUpdate
+    return {
+        isSuccess: true,
+        data: activityToUpdate,
+    }
 }
 
 /**
  * Remove an activity
  * @param {number} id
- * @returns {Promise<{ success: boolean, message: string, id: number }>}
+ * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
     const itemIndex = data.items.findIndex((activity) => activity.id == id)
     if (itemIndex === -1)
-        throw { success: false, message: "Item not found", id: id }
+        throw { isSuccess: false, message: "Item not found", data: id }
     data.items.splice(itemIndex, 1)
-    return { success: true, message: "Item deleted", id: id }
+    return { isSuccess: true, message: "Item deleted", data: id }
 }
 
 module.exports = {
