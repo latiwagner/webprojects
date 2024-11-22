@@ -10,19 +10,19 @@ app.use(express.json())
 app.use(express.static(__dirname + "/dist"))
 
 // Controllers
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
     res.send("Hello World")
 })
-.get("/about", (req, res) => {
+.get("/about", (req, res, next) => {
   res.send("About Us")
 })
 .use("/api/v1/users", userController)
 .use("/ap1/v1/activities", activityController)
 
-.get("*", (req, res) => {
+.get("*", (req, res, next) => {
   res.sendFile(__dirname + "/dist/index.html")
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, (err, data) => {
     console.log("Server is running at http://localhost:" + PORT)
 })
