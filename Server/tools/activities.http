@@ -1,0 +1,30 @@
+###
+GET http://localhost:3000/activities
+
+###
+GET http://localhost:3000/activities/3
+
+###
+DELETE http://localhost:3000/activities/1
+
+###
+POST http://localhost:3000/activities
+Content-Type: application/json
+
+{
+    "posterName": "caseyreardon",
+    "posterIcon": "",
+    "title": "waaaalked",
+    "date": "2024-11-22T23:16:01Z",
+    "distance": 2.5,
+    "duration": 31
+}
+
+###
+PATCH http://localhost:3000/activities/1
+Content-Type: application/json
+
+{
+    "title": "biked for a while",
+    "distance": 15
+}
