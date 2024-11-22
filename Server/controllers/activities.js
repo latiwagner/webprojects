@@ -1,30 +1,39 @@
 const model = require("../model/activities")
 const express = require("express")
 const app = express.Router()
-app.get("/", (req, res) => {
-    res.send(model.getAll())
+
+app.get("/", (req, res, next) => {
+    model
+      .getAll()
+      .then((x) => res.send(x))
+      .catch(next)
 })
     .get("/:id", (req, res, next) => {
         const id = req.params.id
-        const activity = model.get(+id)
-        res.send(activity)
+        model
+          .get(+id)
+          .then((x) => res.send(x))
+          .catch(next)
     })
     .post("/", (req, res, next) => {
-        const activity = model.add(req.body)
-        res.send(activity)
+        model
+          .add(req.body)
+          .then((x) => res.send(x))
+          .catch(next)
     })
     .patch("/:id", (req, res, next) => {
         const id = req.params.id
-        const activity = model.update(+id, req.body)
-        res.send(activity)
+        model
+          .update(+id, req.body)
+          .then((x) => res.send(x))
+          .catch(next)
     })
     .delete("/:id", (req, res, next) => {
         const id = req.params.id
-        try {
-            const ret = model.remove(+id)
-            res.send(ret)
-        } catch (err) {
-            next(err.message)
-        }
+        model
+          .remove(+id)
+          .then((x) => res.send(x))
+          .catch(next)
     })
+    
 module.exports = app
