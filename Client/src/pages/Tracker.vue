@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ModalOverlay from '@/components/ModalOverlay.vue'
-import { getAll, removeActivity, type Activity } from '@/models/activities'
+import { getAll, remove, type Activity } from '@/models/activities'
 import { refUser } from '@/models/currentUser'
 import PostBox from '@/components/PostBox.vue';
 
 const activities = ref<Activity[]>([])
-activities.value = getAll().data
+  getAll().then((data) => activities.value = data.data);
 const isModalOpen = ref(false)
 const activeUser = refUser()
 </script>
@@ -51,7 +51,7 @@ const activeUser = refUser()
         <div class="block" v-for="activity in activities" :key="activity.id">
           <div v-if="logged.user.username === activity.posterName">
             <PostBox :activity="activity">
-              <button class="button is-danger is-small" @click="removeActivity(activity)">X</button>
+              <button class="button is-danger is-small" @click="remove(activity.id)">X</button>
             </PostBox>
           </div>
         </div>

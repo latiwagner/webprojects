@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import { getAll, type Activity } from '@/models/activities'
 import PostBox from '@/components/PostBox.vue'
 
-const activities = ref<Activity[]>([])
-activities.value = getAll().data
+const activities = ref<Activity[]>([]) 
+  getAll().then((data) => activities.value = data.data);
 </script>
 
 <template>

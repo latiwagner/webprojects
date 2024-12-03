@@ -57,11 +57,11 @@ async function add(activity) {
  * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function update(id, activity) {
-    const activityToUpdate = get(id)
-    Object.assign(activityToUpdate, activity)
+    const activityToUpdate = await get(id)
+    Object.assign(activityToUpdate.data, activity)
     return {
         isSuccess: true,
-        data: activityToUpdate,
+        data: activityToUpdate.data,
     }
 }
 

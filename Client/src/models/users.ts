@@ -3,6 +3,7 @@ import type { DataListEnvelope } from './dataEnvelope.ts'
 
 export function getAll(): DataListEnvelope<User> {
   return {
+    isSuccess: true,
     data: data.items,
     total: data.total
   }
