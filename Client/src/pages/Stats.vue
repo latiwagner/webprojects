@@ -4,7 +4,7 @@ import { getAll, type User } from '@/models/users'
 import { refUser } from '@/models/currentUser';
 
 const users = ref<User[]>([])
-users.value = getAll().data
+  getAll().then((data) => users.value = data.data);
 const activeUser = refUser()
 </script>
 

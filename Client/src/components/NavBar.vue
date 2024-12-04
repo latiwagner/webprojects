@@ -5,7 +5,7 @@ import { getAll, type User } from '@/models/users'
 import { refUser, logInAs, logOut } from '@/models/currentUser';
 
 const users = ref<User[]>([])
-users.value = getAll().data
+  getAll().then((data) => users.value = data.data);
 
 const activeUser = refUser()
 const isOpen = ref(false)

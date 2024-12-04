@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getAll, removeUser, type User } from '@/models/users' 
+import { getAll, remove, type User } from '@/models/users' 
 import { refUser } from '@/models/currentUser';
 
 const users = ref<User[]>([])
-users.value = getAll().data
+  getAll().then((data) => users.value = data.data);
 const activeUser = refUser()
 </script>
 
@@ -37,7 +37,7 @@ const activeUser = refUser()
               <td>
                 <div class="buttons">
                   <button class="button is-small">Edit</button>
-                  <button class="button is-danger is-small" @click="removeUser(user)">X</button>
+                  <button class="button is-danger is-small" @click="remove(user.id)">X</button>
                 </div>
               </td>
             </tr>

@@ -1,5 +1,7 @@
 /** @type {{ items: Activity[] }} */
 const data = require("../data/activities.json")
+const { getConnection } = require("./supabase")
+const conn = getConnection()
 
 /**
  * @template T
@@ -16,10 +18,13 @@ const data = require("../data/activities.json")
  * @returns {Promise<DataListEnvelope<Activity>>}
  */
 async function getAll() {
+    const { data, error, count } = await conn
+      .from("activities")
+      .select("*", { count: "estimated" })
     return {
-        isSuccess: true,
-        data: data.items,
-        total: data.items.length,
+      isSuccess: true,
+      data: data,
+      total: count,
     }
 }
 
@@ -31,8 +36,8 @@ async function getAll() {
 async function get(id) {
     const item = data.items.find((activity) => activity.id == id)
     return {
-        isSuccess: !!item,
-        data: item,
+      isSuccess: !!item,
+      data: item,
     }
 }
 
@@ -45,9 +50,15 @@ async function add(activity) {
     activity.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
     data.items.push(activity)
     return {
-        isSuccess: true,
-        data: activity,
+      isSuccess: true,
+      data: activity,
     }
+}
+
+async function seed() {
+  for (const activity of data.items) {
+      await add(activity)
+  }
 }
 
 /**
@@ -60,8 +71,8 @@ async function update(id, activity) {
     const activityToUpdate = await get(id)
     Object.assign(activityToUpdate.data, activity)
     return {
-        isSuccess: true,
-        data: activityToUpdate.data,
+      isSuccess: true,
+      data: activityToUpdate.data,
     }
 }
 
@@ -73,7 +84,11 @@ async function update(id, activity) {
 async function remove(id) {
     const itemIndex = data.items.findIndex((activity) => activity.id == id)
     if (itemIndex === -1)
-        throw { isSuccess: false, message: "Item not found", data: id }
+      throw { 
+        isSuccess: false, 
+        message: "Item not found", 
+        data: id 
+      }
     data.items.splice(itemIndex, 1)
     return { isSuccess: true, message: "Item deleted", data: id }
 }
@@ -84,4 +99,5 @@ module.exports = {
     add,
     update,
     remove,
+    seed
 }

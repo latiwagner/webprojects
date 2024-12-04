@@ -27,8 +27,6 @@ export interface Activity {
     duration: number
   }
 
-//NOTE TO LOOK AT THIS LATER
-
   // export async function removeActivity(activity: Activity) {
   //   const index = (await getAll()).data.findIndex((i) => i.id === activity.id)
   //   if (index != -1) {

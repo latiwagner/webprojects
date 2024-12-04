@@ -1,13 +1,22 @@
-import data from '../data/users.json'
-import type { DataListEnvelope } from './dataEnvelope.ts'
+import type { DataEnvelope, DataListEnvelope } from './dataEnvelope'
+import { api } from './myFetch'
 
-export function getAll(): DataListEnvelope<User> {
-  return {
-    isSuccess: true,
-    data: data.items,
-    total: data.total
-  }
+export async function getAll() {
+  return api<DataListEnvelope<User>>('users')
 }
+export async function getById(id: number) {
+  return api<DataEnvelope<User>>(`users/${id}`)
+}
+export function create(user: User) {
+  return api<DataEnvelope<User>>('users', user)
+}
+export function update(user: User) {
+  return api<DataEnvelope<User>>(`users/${user.id}`, user, 'PATCH')
+}
+export function remove(id: number) {
+  return api<DataEnvelope<User>>(`users/${id}`, undefined, 'DELETE')
+}
+
 
 export interface User {
   id: number
@@ -20,9 +29,9 @@ export interface User {
   admin: boolean
 }
 
-export function removeUser(user: User) {
-  const index = getAll().data.findIndex((i) => i.id === user.id)
-  if (index != -1) {
-    getAll().data.splice(index, 1)
-  }
-}
+// export function removeUser(user: User) {
+//   const index = getAll().data.findIndex((i) => i.id === user.id)
+//   if (index != -1) {
+//     getAll().data.splice(index, 1)
+//   }
+// }
