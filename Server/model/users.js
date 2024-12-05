@@ -19,14 +19,15 @@ const conn = getConnection()
 * @returns {Promise<DataListEnvelope<User>>}
  */
 async function getAll() {
-    const { data, error, count } = await conn
-      .from("users")
-      .select("*", { count: "estimated" })
-    return {
-      isSuccess: true,
-      data: data,
-      total: count,
-    }
+  const { data, error, count } = await conn
+    .from("users")
+    .select("*", { count: "estimated" })
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+    total: count,
+}
 }
 
 
@@ -36,11 +37,16 @@ async function getAll() {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function get(id) {
-    const item = data.items.find((user) => user.id == id)
-    return {
-      isSuccess: !!item,
-      data: item,
-    }
+  const { data, error } = await conn
+    .from("users")
+    .select("*")
+    .eq("id", id)
+    .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 /**
@@ -49,12 +55,26 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function add(user) {
-    user.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
-    data.items.push(user)
-    return {
-      isSuccess: true,
-      data: user,
-    }
+  const { data, error } = await conn
+  .from("users")
+  .insert([
+    {
+      email: user.email,
+      username: user.username,
+      password: user.password,
+      image: user.image,
+      total_distance: user.totalDistance,
+      total_duration: user.totalDuration,
+      admin: user.admin
+    },
+  ])
+  .select("*")
+  .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 async function seed() {
@@ -70,11 +90,24 @@ async function seed() {
  * @returns {Promise<DataEnvelope<User>>}
  */
 async function update(id, user) {
-    const userToUpdate = await get(id)
-    Object.assign(userToUpdate.data, user)
+  const { data, error } = await conn
+  .from("users")
+  .update({
+    email: user.email,
+    username: user.username,
+    password: user.password,
+    image: user.image,
+    total_distance: user.totalDistance,
+    total_duration: user.totalDuration,
+    admin: user.admin
+  })
+  .eq("id", id)
+  .select("*")
+  .single()
     return {
-      isSuccess: true,
-      data: userToUpdate.data,
+      isSuccess: !error,
+      message: error?.message,
+      data: data,
     }
 }
 
@@ -84,16 +117,17 @@ async function update(id, user) {
  * * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-    const itemIndex = data.items.findIndex((user) => user.id == id)
-    if (itemIndex === -1)
-      throw {
-          isSuccess: false,
-          message: "Item not found",
-          data: id,
-          status: 404,
-      }
-    data.items.splice(itemIndex, 1)
-    return { isSuccess: true, message: "Item deleted", data: id }
+  const { data, error } = await conn
+    .from("users")
+    .delete()
+    .eq("id", id)
+    .select("*")
+    .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 module.exports = {

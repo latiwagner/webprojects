@@ -22,7 +22,8 @@ async function getAll() {
       .from("activities")
       .select("*", { count: "estimated" })
     return {
-      isSuccess: true,
+      isSuccess: !error,
+      message: error?.message,
       data: data,
       total: count,
     }
@@ -34,11 +35,16 @@ async function getAll() {
  * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function get(id) {
-    const item = data.items.find((activity) => activity.id == id)
-    return {
-      isSuccess: !!item,
-      data: item,
-    }
+  const { data, error } = await conn
+    .from("activities")
+    .select("*")
+    .eq("id", id)
+    .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 /**
@@ -47,12 +53,24 @@ async function get(id) {
  * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function add(activity) {
-    activity.id = data.items.reduce((prev, x) => (x.id > prev ? x.id : prev), 0) + 1
-    data.items.push(activity)
-    return {
-      isSuccess: true,
-      data: activity,
-    }
+  const { data, error } = await conn
+    .from("activities")
+    .insert([
+      {
+        poster_name: activity.posterName,
+        poster_icon: activity.posterIcon,
+        title: activity.title,
+        distance: activity.distance,
+        duration: activity.duration
+      },
+    ])
+    .select("*")
+    .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 async function seed() {
@@ -68,11 +86,22 @@ async function seed() {
  * @returns {Promise<DataEnvelope<Activity>>}
  */
 async function update(id, activity) {
-    const activityToUpdate = await get(id)
-    Object.assign(activityToUpdate.data, activity)
+  const { data, error } = await conn
+  .from("activities")
+  .update({
+    poster_name: activity.posterName,
+    poster_icon: activity.posterIcon,
+    title: activity.title,
+    distance: activity.distance,
+    duration: activity.duration
+  })
+  .eq("id", id)
+  .select("*")
+  .single()
     return {
-      isSuccess: true,
-      data: activityToUpdate.data,
+      isSuccess: !error,
+      message: error?.message,
+      data: data,
     }
 }
 
@@ -82,15 +111,17 @@ async function update(id, activity) {
  * @returns {Promise<DataEnvelope<number>>}
  */
 async function remove(id) {
-    const itemIndex = data.items.findIndex((activity) => activity.id == id)
-    if (itemIndex === -1)
-      throw { 
-        isSuccess: false, 
-        message: "Item not found", 
-        data: id 
-      }
-    data.items.splice(itemIndex, 1)
-    return { isSuccess: true, message: "Item deleted", data: id }
+  const { data, error } = await conn
+    .from("activities")
+    .delete()
+    .eq("id", id)
+    .select("*")
+    .single()
+  return {
+    isSuccess: !error,
+    message: error?.message,
+    data: data,
+  }
 }
 
 module.exports = {
