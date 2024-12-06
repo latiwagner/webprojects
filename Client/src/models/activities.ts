@@ -19,8 +19,8 @@ export function remove(id: number) {
 
 export interface Activity {
     id: number
-    posterName: string
-    posterIcon: string
+    poster_name: string
+    poster_icon: string
     title: string
     date: string
     distance: number

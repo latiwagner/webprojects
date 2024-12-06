@@ -10,13 +10,13 @@ const { activity } = props
     <article class="media">
         <div class="media-left">
         <figure class="image is-64x64">
-            <img :src="activity.posterIcon" alt="" />
+            <img :src="activity.poster_icon" alt="" />
         </figure>
         </div>  
         <div class="media-content">
         <div class="content">
             <p>
-              <strong>{{ activity.posterName }}</strong>
+              <strong>{{ activity.poster_name }}</strong>
               <br />
               <small>{{ activity.date }}</small>
               <br />

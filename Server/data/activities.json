@@ -2,8 +2,8 @@
     "items": [
       {
         "id": 1,
-        "posterName": "caseyreardon",
-        "posterIcon": "",
+        "poster_name": "caseyreardon",
+        "poster_icon": "",
         "title": "walked",
         "date": "2024-10-19T23:16:01Z",
         "distance": 2.25,
@@ -11,8 +11,8 @@
       },
       {
         "id": 2,
-        "posterName": "michaelw",
-        "posterIcon": "https://dummyjson.com/icon/michaelw/128",
+        "poster_name": "michaelw",
+        "poster_icon": "https://dummyjson.com/icon/michaelw/128",
         "title": "ran one mile",
         "date": "2024-10-18T17:56:21Z",
         "distance": 1,
@@ -20,8 +20,8 @@
       },
       {
         "id": 3,
-        "posterName": "sophiab",
-        "posterIcon": "https://dummyjson.com/icon/sophiab/128",
+        "poster_name": "sophiab",
+        "poster_icon": "https://dummyjson.com/icon/sophiab/128",
         "title": "biked again",
         "date": "2024-10-18T15:00:32Z",
         "distance": 5,
@@ -29,8 +29,8 @@
       },
       {
         "id": 4,
-        "posterName": "sophiab",
-        "posterIcon": "https://dummyjson.com/icon/sophiab/128",
+        "poster_name": "sophiab",
+        "poster_icon": "https://dummyjson.com/icon/sophiab/128",
         "title": "biked",
         "date": "2024-10-17T13:00:00Z",
         "distance": 5,

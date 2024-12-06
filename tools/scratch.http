@@ -20,7 +20,7 @@ GET http://localhost:3000/about
 GET http://localhost:3000/ap1/v1/users
 
 ###
-GET http://localhost:3000/ap1/v1/users/30
+GET http://localhost:3000/ap1/v1/users/1
 
 ###
 DELETE http://localhost:3000/ap1/v1/users/1

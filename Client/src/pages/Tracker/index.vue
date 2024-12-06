@@ -54,7 +54,7 @@ const activeUser = refUser()
     <div class="block">
       <div v-for="logged in activeUser" :key="logged.user.id">
         <div class="block" v-for="activity in activities" :key="activity.id">
-          <div v-if="logged.user.username === activity.posterName">
+          <div v-if="logged.user.username === activity.poster_name">
             <PostBox :activity="activity">
               <div class="buttons">
                 <button class="button is-small">

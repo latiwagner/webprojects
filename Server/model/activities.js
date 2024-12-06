@@ -57,8 +57,8 @@ async function add(activity) {
     .from("activities")
     .insert([
       {
-        poster_name: activity.posterName,
-        poster_icon: activity.posterIcon,
+        poster_name: activity.poster_name,
+        poster_icon: activity.poster_icon,
         title: activity.title,
         distance: activity.distance,
         duration: activity.duration
@@ -89,8 +89,8 @@ async function update(id, activity) {
   const { data, error } = await conn
   .from("activities")
   .update({
-    poster_name: activity.posterName,
-    poster_icon: activity.posterIcon,
+    poster_name: activity.poster_name,
+    poster_icon: activity.poster_icon,
     title: activity.title,
     distance: activity.distance,
     duration: activity.duration
