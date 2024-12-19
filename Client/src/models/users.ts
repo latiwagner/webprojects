@@ -4,6 +4,11 @@ import { api } from './myFetch'
 export async function getAll() {
   return api<DataListEnvelope<User>>('users')
 }
+
+export async function search(query: string) {
+  return api<DataListEnvelope<User>>(`users/search?q=${query}`)
+}
+
 export async function getById(id: number) {
   return api<DataEnvelope<User>>(`users/${id}`)
 }

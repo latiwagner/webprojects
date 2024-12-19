@@ -35,7 +35,7 @@ async function search(query) {
     .from("users")
     .select("*", { count: "estimated" })
     .or(
-      `username.like.%${query}%,email.like.%${query}%")`
+      `username.ilike.%${query}%,email.ilike.%${query}%")`
     )
 }
 
