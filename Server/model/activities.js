@@ -29,6 +29,15 @@ async function getAll() {
     }
 }
 
+async function search(query) {
+  const { data, error, count } = await conn
+    .from("activities")
+    .select("*", { count: "estimated" })
+    .or(
+      `title.like.%${query}%,poster_name.like.%${query}%,date.like.%${query}%")`
+    )
+}
+
 /**
  * Get an activity by id
  * @param {number} id
@@ -126,6 +135,7 @@ async function remove(id) {
 
 module.exports = {
     getAll,
+    search,
     get,
     add,
     update,

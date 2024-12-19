@@ -30,6 +30,14 @@ async function getAll() {
 }
 }
 
+async function search(query) {
+  const { data, error, count } = await conn
+    .from("users")
+    .select("*", { count: "estimated" })
+    .or(
+      `username.like.%${query}%,email.like.%${query}%")`
+    )
+}
 
 /**
  * Get a user by id
@@ -132,6 +140,7 @@ async function remove(id) {
 
 module.exports = {
     getAll,
+    search,
     get,
     add,
     update,

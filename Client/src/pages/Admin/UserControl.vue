@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getAll, remove, type User } from '@/models/users' 
-import { refUser } from '@/models/currentUser';
+import { refUser } from '@/models/currentUser'
+import { OAutocomplete, type OptionsPropItem } from "@oruga-ui/oruga-next";
 
 const users = ref<User[]>([])
   getAll().then((data) => users.value = data.data);
 const activeUser = refUser()
+
+
 </script>
 
 <template>
